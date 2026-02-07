@@ -17,19 +17,19 @@ jobs:
       packages: write
 
     steps:
-      - name: Free disk space
-        run: |
-          echo "Before cleanup:"
-          df -h /
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/ghc
-          sudo rm -rf /opt/hostedtoolcache
-          sudo rm -rf /usr/local/share/boost
-          sudo rm -rf /usr/share/swift
-          sudo docker image prune -af || true
-          echo "After cleanup:"
-          df -h /
+      - name: Maximize disk space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: false
+
+      - name: Show available space
+        run: df -h /
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -52,5 +52,4 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-          # No GHA cache — image is too large for the 10GB cache limit
           no-cache: true
