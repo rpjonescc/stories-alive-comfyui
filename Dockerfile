@@ -30,12 +30,12 @@ RUN wget -q --show-progress -O /comfyui/models/text_encoders/umt5_xxl_fp8_e4m3fn
 RUN wget -q --show-progress -O /comfyui/models/vae/wan_2.1_vae.safetensors \
     "https://huggingface.co/Comfy-Org/Wan_2.2_ComfyUI_Repackaged/resolve/main/split_files/vae/wan_2.1_vae.safetensors"
 
-# --- SVI 2.0 Pro LoRAs (~0.7GB each) ---
+# --- SVI 2.0 Pro LoRAs (~1.2GB each) ---
 RUN wget -q --show-progress -O /comfyui/models/loras/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors \
-    "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors"
+    "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_HIGH_lora_rank_128_fp16.safetensors"
 
 RUN wget -q --show-progress -O /comfyui/models/loras/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors \
-    "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors"
+    "https://huggingface.co/Kijai/WanVideo_comfy/resolve/main/LoRAs/Stable-Video-Infinity/v2.0/SVI_v2_PRO_Wan2.2-I2V-A14B_LOW_lora_rank_128_fp16.safetensors"
 
 # Copy workflow template (for reference; workflow is sent in API payload at runtime)
 COPY workflow_template.json /app/workflow_template.json
